@@ -1,48 +1,48 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
-namespace KidsWithGreatestNumberofCandies
+namespace MergeStringsAlternately
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] candies = { 2, 3, 5, 1, 3 };
-            int extraCandies = 3;
-            IList<bool> kids = new List<bool>();
-            kids = KidsWithCandies(candies, extraCandies);
-            Console.Write(kids);
+            string word1 = "abc";
+            string word2 = "pqr";
+
+            string result = MergeAlternately(word1, word2);
+
+            Console.WriteLine(result);
+            Console.ReadLine();
         }
-
-        public static IList<bool> KidsWithCandies(int[] candies, int extraCandies)
+        public static string MergeAlternately(string word1, string word2)
         {
-           /* int max = 0;
+            StringBuilder result = new StringBuilder();
 
+            int word1Increment = 0;
+            int word2Increment = 0;
 
-            for (int i = 0; i < candies.Length; i++)
+            while (word1Increment < word1.Length && word2Increment < word2.Length)
             {
-                if(max < candies[i])
-                {
-                    max = candies[i];
-                }
+
+                result.Append(word1[word1Increment]).Append(word2[word2Increment]);
+
+                word1Increment++;
+                word2Increment++;
             }
 
-            bool[] result = new bool[candies.Length];
-
-            for(int i = 0; i < candies.Length;i++)
+            while(word1Increment < word1.Length)
             {
-                if(candies[i] + extraCandies >= max)
-                {
-                    result[i] = true;
-                }
+                result.Append(word1[word1Increment]);
+                word1Increment++;
             }
-            return result.ToList();
-           */
+            while(word2Increment < word2.Length)
+            {
+                result.Append(word2[word2Increment]);
+                word2Increment++;
+            }
 
-            return candies.Select(x => x + extraCandies >= candies.Max()).ToArray();
-            
+            return result.ToString();
         }
     }
 }
